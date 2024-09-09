@@ -12,13 +12,11 @@ function formatNumber(number) {
 }
 </script>
 <template>
-    <div class="col-xl-3 col-lg-6 col-12 ">
-        <div class="px-1 rounded-2 movie-card">
-            <img :src="img_Path + movie.poster_path" alt="Movie poster" class="movie-poster">
-            <div class="d-flex justify-content-between align-items-baseline mx-auto">
-                <h1 class="movie-title">{{ movie.title }}</h1>
-                <div class="movie-rate">{{ formatNumber(movie.vote_average) }}</div>
-            </div>
+    <div class="px-1 rounded-2 movie-card">
+        <img :src="img_Path + movie.poster_path" alt="Movie poster" class="movie-poster">
+        <div class="d-flex justify-content-between align-items-baseline mx-auto">
+            <h1 class="movie-title">{{ movie.title }}</h1>
+            <div class="movie-rate">{{ formatNumber(movie.vote_average) }}</div>
         </div>
     </div>
 </template>

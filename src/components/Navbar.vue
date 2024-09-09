@@ -22,10 +22,33 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
+.navigation {
+  position: relative;
+}
+
 .navlink {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
+  position: relative;
+  padding: 10px;
+}
+
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.active-navlink::after {
+  visibility: visible;
 }
 
 .search-icon {

@@ -3,13 +3,19 @@ import MovieCard from '@/components/MovieCard.vue';
 import Loading from '@/components/Loading.vue';
 import axiosClient from '@/axiosClient';
 import { computed, onMounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';  // Import route and router
+
 
 const key = 'd8b30ddf56e9f31f5633a0cc2fb3f2dd';
 const type = 'movie';
 const movies = ref({ results: [] });
-const currentPage = ref(1);
 const totalPages = ref(1);
 const isLoading = ref(false);
+const route = useRoute();
+const router = useRouter();
+
+const currentPage = ref(parseInt(route.query.page) || 1);
+
 
 function debounce(fn, delay) {
     let timer;
@@ -22,9 +28,9 @@ function debounce(fn, delay) {
 async function fetchMoviesPerPage() {
     isLoading.value = true;
     try {
-        const response = await axiosClient.get(`/${type}/week?api_key=${key}&language=en-US&page=${currentPage.value}`);
+        const response = await axiosClient.get(`trending/${type}/week?api_key=${key}&language=en-US&page=${currentPage.value}`);
         movies.value = response.data;
-        totalPages.value = movies.value.total_pages;
+        totalPages.value = 500;
         console.log(movies.value);
     } catch (error) {
         console.error('Error fetching movies:', error);
@@ -40,8 +46,15 @@ onMounted(() => {
     fetchMoviesPerPage();
 });
 
-watch(currentPage, () => {
+watch(currentPage, (newPage) => {
     debouncedFetchMovies();
+    console.log(currentPage)
+    router.push({ query: { ...route.query, page: newPage } });
+});
+watch(route.query, (newQuery) => {
+    if (newQuery.page) {
+        currentPage.value = parseInt(newQuery.page) || 1;
+    }
 });
 
 const pagesToShow = computed(() => {
@@ -78,7 +91,10 @@ function goToPage(page) {
         <Loading v-if="isLoading" />
         <div v-else>
             <div class="row">
-                <MovieCard v-for="movie in movies.results" :key="movie.id" :movie="movie" />
+                <router-link :to="`movies/${movie.id}`" v-for="movie in movies.results" :key="movie.id"
+                    class="col-xl-3 col-lg-6 col-12 text-decoration-none">
+                    <MovieCard :movie="movie" />
+                </router-link>
             </div>
             <nav class="pagination-controls">
                 <div class="d-flex justify-content-center align-items-centers">
