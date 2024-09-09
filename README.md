@@ -1,6 +1,6 @@
 # MoviesSite
 
-This template should help get you started developing with Vue 3 in Vite.
+This project developed using Vue 3 + axios + Bootstrap5
 
 ## Recommended IDE Setup
 
