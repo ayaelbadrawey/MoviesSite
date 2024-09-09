@@ -107,7 +107,7 @@ function goToPage(page) {
                             :class="{ active: currentPage === page }">
                             {{ page }}
                         </button>
-                        <span class="text-white" v-if="currentPage < totalPages - 3">....</span>
+                        <span class="text-white" v-if="currentPage < totalPages - 3">..</span>
                         <button class="text-white" v-if="currentPage < totalPages - 1" @click="goToPage(totalPages)">
                             {{ totalPages }}</button>
                     </span>
@@ -140,37 +140,28 @@ button {
     border-radius: 5px;
 }
 
-.page-number button.active {
-    font-weight: bold;
-    background-color: #007bff;
-    color: white;
-}
-
 button[disabled] {
     opacity: 0.5;
     pointer-events: none;
 }
 
 .next-prev {
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 2px;
-    text-align: center;
-    width: 90px;
+    color: red;
+    font-weight: 700;
 }
 
 .active {
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 2px 10px 2px 10px;
     text-align: center;
+    color: red;
+    font-weight: 700;
 }
 
 .goto-input {
     width: 50px;
     margin: 2px 10px 2px 10px;
-    background-color: #000;
-    border: 1px solid red;
+    background-color: red;
+    border: unset;
+    font-weight: 500;
     color: #fff;
     border-radius: 5px;
     text-align: center;

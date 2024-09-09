@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
     <RouterLink class="navlink" active-class="active-navlink" to="/movies">Movies</RouterLink>
     <RouterLink class="navlink" active-class="active-navlink" to="/">Series</RouterLink>
-    <div class="d-flex justify-content-between align-baseline">
+    <div class="d-flex justify-content-between">
       <RouterLink class="navlink" active-class="active-navlink" to="/">Login/Signup</RouterLink>
       <font-awesome-icon class="bell-icon" icon="bell" />
     </div>
@@ -31,7 +31,6 @@ import { RouterLink, RouterView } from 'vue-router'
   color: #fff;
   font-weight: 500;
   position: relative;
-  padding: 10px;
 }
 
 .navlink::after {
